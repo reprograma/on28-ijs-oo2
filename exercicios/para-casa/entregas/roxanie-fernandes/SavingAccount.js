@@ -1,6 +1,4 @@
-const { Bank } = require("./Bank");
-const { BankAccount } = require("./BankAccount");
-const { Client } = require("./Client");
+const { BankAccount } = require("./BankAccount.js");
 
 class SavingAccount extends BankAccount {
   incomeRate;

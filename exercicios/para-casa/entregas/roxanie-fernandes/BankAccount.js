@@ -1,5 +1,5 @@
-const { Bank } = require("./Bank");
-const { Client } = require("./Client");
+const { Bank } = require("./Bank.js");
+const { Client } = require("./Client.js");
 
 class BankAccount {
   client;
@@ -15,14 +15,14 @@ class BankAccount {
     if (!(bank instanceof Bank)) {
       return new Error("Informe um banco válido");
     }
-    if (
-      client.banks.find((element) => element.bankCode === bank.bankCode) ===
-      undefined
-    ) {
-      return new Error(
+
+    if (!client.addBank(bank)) {
+      console.log(
         `Cliente do CPF ${client.cpf} não possui conta no banco ${bank.bankName}`
       );
+      return;
     }
+
     this.client = client;
     this.bank = bank;
     this.accountNumber = accountNumber;

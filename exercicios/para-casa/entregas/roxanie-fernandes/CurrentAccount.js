@@ -1,4 +1,4 @@
-const { BankAccount } = require("./BankAccount");
+const { BankAccount } = require("./BankAccount.js");
 
 class CurrentAccount extends BankAccount {
   transferTo(anotherAccount, amount) {

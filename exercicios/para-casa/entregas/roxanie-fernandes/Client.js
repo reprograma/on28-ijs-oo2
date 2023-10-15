@@ -1,71 +1,81 @@
-const { Bank } = require('./Bank');
+const { Bank } = require("./Bank.js");
+const { Person } = require("./Person.js");
 
-class Client {
-	name;
-	#cpf;
-	banks = [];
+class Client extends Person {
+  banks;
 
-	constructor(name, cpf) {
-		this.name = name;
-		this.#cpf = cpf;
-	}
+  constructor(name, cpf) {
+    super(name, cpf);
+    this.banks = [];
+  }
 
-	get cpf() {
-		return this.#cpf;
-	}
+  #getAnyManager(bank) {
+    if (bank.managers.length === 0) {
+      console.log(`o Banco ${bank.bankName}, não possui gerentes`);
+      return;
+    }
 
-	hasAccountInThisBank(bank) {
-		return (
-			this.banks.find((element) => element.bankCode === bank.bankCode) !==
-			undefined
-		);
-	}
+    const managerIndex = Math.floor(Math.random() * bank.managers.length);
+    const anyManager = bank.managers[managerIndex];
 
-	addBank(bank) {
-		if (!(bank instanceof Bank)) {
-			console.log('Informe um banco válido');
-			return;
-		}
+    anyManager.addClient(this.name);
+    console.log(`Gerente selecionado para ${this.name}: ${anyManager.name}`);
+    return anyManager;
+  }
 
-		if (this.hasAccountInThisBank(bank)) {
-			console.log(
-				`Cliente do CPF ${this.cpf} já possui conta no banco ${bank.bankName}`
-			);
-			return;
-		}
+  hasAccountInThisBank(bank) {
+    return (
+      this.banks.find((element) => element.bank.bankCode === bank.bankCode) !==
+      undefined
+    );
+  }
 
-		this.banks.push(bank);
-		const bankIndex = Bank.createdBanks.findIndex(
-			(element) => element.bankCode === bank.bankCode
-		);
-		Bank.createdBanks[bankIndex].qtdClients++;
+  addBank(bank) {
+    if (!(bank instanceof Bank)) {
+      console.log("Informe um banco válido");
+      return;
+    }
 
-		console.log(`Banco ${bank.bankCode} adicionado à cliente ${this.name}.`);
-	}
+    if (this.hasAccountInThisBank(bank)) {
+      console.log(
+        `Cliente do CPF ${this.cpf} já possui conta no banco ${bank.bankName}`
+      );
+      return;
+    }
 
-	removeBank(bank) {
-		if (!(bank instanceof Bank)) {
-			console.log('Informe um banco válido');
-			return;
-		}
+    const anyManager = this.#getAnyManager(bank);
 
-		if (!this.hasAccountInThisBank(bank)) {
-			console.log(
-				`Cliente do CPF ${this.cpf} não possui conta no banco ${bank.bankName} para ser removida`
-			);
-			return;
-		}
+    this.banks.push({ bank: bank, manager: anyManager });
+    const bankIndex = Bank.createdBanks.findIndex(
+      (element) => element.bankCode === bank.bankCode
+    );
+    Bank.createdBanks[bankIndex].qtdClients++;
 
-		this.banks = this.banks.filter(
-			(element) => element.bankCode !== bank.bankCode
-		);
-		const bankIndex = Bank.createdBanks.findIndex(
-			(element) => element.bankCode === bank.bankCode
-		);
-		Bank.createdBanks[bankIndex].qtdClients--;
+    console.log(`Banco ${bank.bankCode} adicionado à cliente ${this.name}.`);
+  }
 
-		console.log(`Banco ${bank.bankCode} removido da cliente ${this.name}`);
-	}
+  removeBank(bank) {
+    if (!(bank instanceof Bank)) {
+      console.log("Informe um banco válido");
+      return;
+    }
+
+    if (!this.hasAccountInThisBank(bank)) {
+      console.log(
+        `Cliente do CPF ${this.cpf} não possui conta no banco ${bank.bankName} para ser removida`
+      );
+      return;
+    }
+
+    this.banks = this.banks.filter(
+      (element) => element.bankCode !== bank.bankCode
+    );
+    const bankIndex = Bank.createdBanks.findIndex(
+      (element) => element.bankCode === bank.bankCode
+    );
+    Bank.createdBanks[bankIndex].qtdClients--;
+
+    console.log(`Banco ${bank.bankCode} removido da cliente ${this.name}`);
+  }
 }
-
 module.exports = { Client };
