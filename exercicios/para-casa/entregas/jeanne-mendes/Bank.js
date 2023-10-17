@@ -1,7 +1,10 @@
+const { Manager } = require("./Manager");
+
 class Bank {
 	bankCode;
 	bankName;
 	#trasferTax;
+	managers;
 
 	static createdBanks = [];
 
@@ -13,10 +16,19 @@ class Bank {
 			bankCode: this.bankCode,
 			qtdClients: 0,
 		});
+		this.managers = [{name: Manager.name}];
 	}
 
 	get transferTax() {
 		return this.#trasferTax;
+	}
+
+	contractManager(manager){
+		if(manager instanceof Manager){
+			this.managers.push(manager);
+			console.log(`Gerente ${manager.name} contratada no banco ${this.bankName}.`)
+		}
+		else console.log(`Informe um gerente válido.`)
 	}
 }
 
