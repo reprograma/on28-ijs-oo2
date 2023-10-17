@@ -18,7 +18,7 @@ class CurrentAccount extends BankAccount{
 		if (this.bank.bankCode !== anotherAccount.bank.bankCode) {
 			amountToBeDebited = amount + amount;
 			console.log(
-				`Ttransferência realizada sem cobrar nenhuma taxa.`
+				`Transferência realizada sem cobrar nenhuma taxa.`
 			);
 		}
 
@@ -32,35 +32,11 @@ class CurrentAccount extends BankAccount{
 			);
 		} else {
 			console.log(
-				`Saldo insuficiente para realizar a transferência. Seu saldo atual é de ${
-					this.#balance
-				}. Para realizar essa transferência você precisa ter ${amountToBeDebited} em conta.`
+				`Saldo insuficiente para realizar a transferência. Seu saldo atual é de R$${amountToBeDebited}. 
+				Para realizar essa transferência você precisa ter R$${this.balance} em conta.`
 			);
 		}
     }
 }
-
-// const banco = new Bank(2563, 'geiceBB', 0.5)
-// const banco2 = new Bank(2773, 'BB', 0.5)
-// console.log(banco)
-
-// const cliente = new Client('geice', 236541789)
-// const client2 = new Client('margarida', 17897757)
-// cliente.addBank(banco2)
-// client2.addBank(banco2)
-// client2.addBank(banco)
-
-// const contaCorrente = new BankAccount(cliente, banco2, 2365, 69874512)
-// const contaCorrente2 = new BankAccount(client2, banco, 2365, 69874512)
-// console.log(contaCorrente)
-
-// console.log()
-// contaCorrente.balance = 600
-// contaCorrente.transferTo(contaCorrente2, 265)
-
-// contaCorrente.creditAmount(200)
-// contaCorrente.debitAmount(50)
-
-// contaCorrente.cashWithdrawal()
 
 module.exports = { CurrentAccount }

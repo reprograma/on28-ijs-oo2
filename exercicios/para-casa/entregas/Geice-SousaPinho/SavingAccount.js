@@ -1,16 +1,17 @@
-const { Bank } = require('./Bank');
-const { Client } = require('./Client')
+const { Bank } = require("./Bank");
+const { Client } = require("./Client")
 const { BankAccount } = require("./BankAccount");
-const { CurrentAccount } = require("./");
+const { CurrentAccount } = require("./CurrentAccount");
+
 class SavingAccount extends BankAccount {
   #qtdWithdrawal = 0;
   #MAX_OF_WITHDRAWAL = 2;
   #withdrawalTax = 0.03;
   incomeRate;
   incomeDay;
-  
-  constructor(qtdWithdrawal, MAX_OF_WITHDRAWAL, agency, account, bank, client, incomeDay, incomeRate){
-    super(qtdWithdrawal, MAX_OF_WITHDRAWAL, agency, account, bank, client)
+
+  constructor(client, bank, account, agency, incomeDay, incomeRate){
+    super(client, bank, account, agency)
     this.incomeDay = incomeDay;
     this.incomeRate = incomeRate;
   }
@@ -22,7 +23,7 @@ class SavingAccount extends BankAccount {
       if(this.balance >= amount) {
         this.balance -= amount;
         this.#qtdWithdrawal++;
-        console.log(`Retirada realizada com sucesso. Seu saldo restante é R$ ${this.balance}.`)
+        console.log(`Retirada realizada com sucesso. Seu saldo restante é R$ ${this.balance.toFixed(2)}.`)
       } else {
         console.log(`Você não tem saldo suficiente para essa operação;`);
       }
@@ -31,7 +32,7 @@ class SavingAccount extends BankAccount {
       if(this.balance >= amountWithTax) {
         this.balance -= amountWithTax;
         this.#qtdWithdrawal++;
-        console.log(`Retirada realizada com sucesso. Seu saldo restante é R$ ${this.balance},00`)
+        console.log(`Retirada realizada com sucesso. Seu saldo restante é R$ ${this.balance.toFixed(2)}`)
       } else {
         console.log(`Você não tem saldo suficiente para essa operação;`);
       }
@@ -56,33 +57,12 @@ class SavingAccount extends BankAccount {
     if(currentDay === this.incomeDay){
       this.balance += (this.balance * 0.4);
       console.log(`Seu novo saldo é ${this.balance}. O valor do rendimento foi de R$ ${this.balance * 0.4}.`)
+      return
+    } else {
+      console.log(`Nenhuma data correspondente foi encontrada.`)
     }
   }
 
 }
 
-const banco = new Bank(2563, 'geiceBB', 0.5)
-const banco2 = new Bank(2773, 'BB', 0.5)
-console.log(banco)
-
-const cliente = new Client('geice', 236541789)
-const client2 = new Client('margarida', 17897757)
-cliente.addBank(banco2)
-client2.addBank(banco2)
-client2.addBank(banco)
-
-const contaCorrente = new BankAccount(cliente, banco2, 2365, 69874512)
-const contaCorrente2 = new BankAccount(client2, banco, 2365, 69874512)
-console.log(contaCorrente)
-
-console.log()
-contaCorrente.balance = 600
-contaCorrente.transferTo(contaCorrente2, 265)
-
-// contaCorrente.creditAmount(200)
-// contaCorrente.debitAmount(50)
-
-contaCorrente.cashWithdrawal()
-
-
-// module.exports = { SavingAccount }
+module.exports = { SavingAccount }
