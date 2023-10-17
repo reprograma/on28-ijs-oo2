@@ -1,24 +1,24 @@
 const { Bank } = require('./Bank');
+const { Person } = require('./Person');
 
-class Client {
-	name;
-	#cpf;
+class Client extends Person{
 	banks = [];
 
 	constructor(name, cpf) {
-		this.name = name;
-		this.#cpf = cpf;
-	}
-
-	get cpf() {
-		return this.#cpf;
+		super(name, cpf)
 	}
 
 	hasAccountInThisBank(bank) {
-		return (
-			this.banks.find((element) => element.bankCode === bank.bankCode) !==
-			undefined
-		);
+    return (
+      this.banks.find((element) => element.bank.bankCode === bank.bankCode) !==
+      undefined
+    );
+  }
+
+	#getAnyManager(bank) {
+		const managers = bank.managers;
+		const randomIndex = Math.floor(Math.random() * managers.length);
+		return managers[randomIndex];
 	}
 
 	addBank(bank) {
@@ -34,13 +34,21 @@ class Client {
 			return;
 		}
 
-		this.banks.push(bank);
-		const bankIndex = Bank.createdBanks.findIndex(
-			(element) => element.bankCode === bank.bankCode
-		);
-		Bank.createdBanks[bankIndex].qtdClients++;
+		const manager = this.#getAnyManager(bank);
 
-		console.log(`Banco ${bank.bankCode} adicionado à cliente ${this.name}.`);
+    this.banks.push({
+      bank,
+      manager,
+    });
+
+    const bankIndex = Bank.createdBanks.findIndex(
+      (element) => element.bankCode === bank.bankCode
+    );
+    Bank.createdBanks[bankIndex].qtdClients++;
+
+    console.log(
+      `Banco ${bank.bankCode} adicionado à cliente ${this.name}. Gerente: ${manager.name}`
+    );
 	}
 
 	removeBank(bank) {
@@ -57,14 +65,14 @@ class Client {
 		}
 
 		this.banks = this.banks.filter(
-			(element) => element.bankCode !== bank.bankCode
-		);
-		const bankIndex = Bank.createdBanks.findIndex(
-			(element) => element.bankCode === bank.bankCode
-		);
-		Bank.createdBanks[bankIndex].qtdClients--;
+      (element) => element.bank.bankCode !== bank.bankCode
+    );
+    const bankIndex = Bank.createdBanks.findIndex(
+      (element) => element.bankCode === bank.bankCode
+    );
+    Bank.createdBanks[bankIndex].qtdClients--;
 
-		console.log(`Banco ${bank.bankCode} removido da cliente ${this.name}`);
+    console.log(`Banco ${bank.bankCode} removido da cliente ${this.name}`);
 	}
 }
 

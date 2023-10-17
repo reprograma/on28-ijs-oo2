@@ -16,7 +16,7 @@ class BankAccount {
 			return new Error('Informe um banco válido');
 		}
 		if (
-			client.banks.find((element) => element.bankCode === bank.bankCode) ===
+			client.banks.find((element) => element.bank.bankCode === bank.bankCode) ===
 			undefined
 		) {
 			return new Error(
@@ -104,8 +104,6 @@ class BankAccount {
 		if(this.#balance < 0) return console.log('Saldo suficiente para realizar essa operação')
 		this.#balance -= amount;
 		console.log(`O novo saldo da conta é: R$ ${this.#balance}`);
-		// Caso haja saldo suficiente, debitar o valor do saldo.
-		// Imprima na console o resultado.
 	}
 }
 
