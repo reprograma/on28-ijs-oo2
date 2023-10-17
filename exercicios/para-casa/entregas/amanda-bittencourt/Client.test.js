@@ -1,5 +1,5 @@
-import { Bank } from "../Bank.js";
-import { Client } from "../Client.js";
+import { Bank } from "./Bank.js";
+import { Client } from "./Client.js";
 
 describe("Client", () => {
   let client;

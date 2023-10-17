@@ -1,7 +1,7 @@
-import { Bank } from "../Bank.js";
-import { Client } from "../Client.js";
-import { BanksAccount } from "../BanksAccount.js";
-import {SavingAccount} from "../SavingAccount.js";
+import { Bank } from "./Bank.js";
+import { Client } from "./Client.js";
+import { BanksAccount } from "./BanksAccount.js";
+import {SavingAccount} from "./SavingAccount.js";
 
 // Testes para a classe BanksAccount
 describe("BanksAccount", () => {

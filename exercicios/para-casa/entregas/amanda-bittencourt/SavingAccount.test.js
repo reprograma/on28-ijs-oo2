@@ -1,5 +1,5 @@
-import { SavingAccount } from "../SavingAccount.js";
-import { BanksAccount } from "../BanksAccount.js";
+import { SavingAccount } from "./SavingAccount.js";
+import { BanksAccount } from "./BanksAccount.js";
 
 describe("SavingAccount", () => {
   let client;
@@ -13,7 +13,7 @@ describe("SavingAccount", () => {
   });
 
   // Testes para o método cashWithdrawal
-  test("cashWithdrawal should allow free withdrawals up to the maximum limit", () => {
+  test("cashWithdrawal deve permitir saques gratuitos ate o limite mazimo", () => {
     savingAccount.creditAmount(1000);
     savingAccount.cashWithdrawal(200);
     expect(savingAccount.balance).toBe(800);
@@ -21,7 +21,7 @@ describe("SavingAccount", () => {
     expect(savingAccount.balance).toBe(500);
   });
 
-  test("cashWithdrawal should apply withdrawal tax after reaching the maximum limit", () => {
+  test("cashWithdrawal deve aplicar o imposto de saque depois que atingir o limite maximo", () => {
     savingAccount.creditAmount(1000);
     savingAccount.cashWithdrawal(200);
     savingAccount.cashWithdrawal(300);
@@ -29,23 +29,21 @@ describe("SavingAccount", () => {
     expect(savingAccount.balance).toBe(460);
   });
 
-  test("cashWithdrawal should handle insufficient balance", () => {
+  test("cashWithdrawal deve mostrar o saldo insuficiente", () => {
     savingAccount.cashWithdrawal(200);
     expect(savingAccount.balance).toBe(0);
   });
 
   // Testes para o método generateIncome
-  test("generateIncome should credit income to the account on the specified income day", () => {
+  test("generateIncome deve creditar o cliente na data especifica para deposito", () => {
     savingAccount.creditAmount(1000);
     savingAccount.generateIncome(15);
     expect(savingAccount.balance).toBeGreaterThan(1000);
   });
 
-  test("generateIncome should not credit income to the account on other days", () => {
+  test("generateIncome nao deve creditar em o deposito na conta em outros dias", () => {
     savingAccount.creditAmount(1000);
     savingAccount.generateIncome(20);
     expect(savingAccount.balance).toBe(1000);
   });
 });
-
-// Observação: Certifique-se de adaptar os imports e ajustar os caminhos dos arquivos conforme a sua estrutura de pastas.

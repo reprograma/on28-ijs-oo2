@@ -1,4 +1,4 @@
-const { Bank } = require('../Bank.js');
+import { Bank } from "./Bank.js";
 
 describe("Bank", () => {
   let bank;

@@ -1,5 +1,5 @@
-import { CurrentAccount } from "../CurrentAccount.js";
-import { BanksAccount } from "../BanksAccount.js";
+import { CurrentAccount } from "./CurrentAccount.js";
+import { BanksAccount } from "./BanksAccount.js";
 
 describe("CurrentAccount", () => {
   let senderAccount;
@@ -10,8 +10,7 @@ describe("CurrentAccount", () => {
     receiverAccount = new BanksAccount();
   });
 
-  // Teste para verificar transferência bem-sucedida com saldo suficiente
-  test("transferTo should transfer correct amount between accounts with sufficient balance", () => {
+  test("transferTo deve transferir corretamente o valor entre contas com saldo suficiente", () => {
     senderAccount.creditAmount(200);
     senderAccount.transferTo(receiverAccount, 100);
     expect(senderAccount.balance).toBe(100);
@@ -19,7 +18,7 @@ describe("CurrentAccount", () => {
   });
 
   // Teste para verificar mensagem de saldo insuficiente
-  test("transferTo should display insufficient balance message when sender has insufficient funds", () => {
+  test("transferTo deve oferecer uma mensagem de saldo insuficiente quando o remetente tiver fundos insuficientes", () => {
     senderAccount.creditAmount(50);
     senderAccount.transferTo(receiverAccount, 100);
     expect(senderAccount.balance).toBe(50);
