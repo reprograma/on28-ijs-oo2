@@ -1,4 +1,4 @@
-import { Bank } from "./Bank.js";
+import { Bank } from "../Bank.js";
 
 describe("Bank", () => {
   let bank;

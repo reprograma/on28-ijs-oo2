@@ -1,5 +1,5 @@
-import { SavingAccount } from "./SavingAccount.js";
-import { BanksAccount } from "./BanksAccount.js";
+import { SavingAccount } from "../SavingAccount.js";
+import { BanksAccount } from "../BanksAccount.js";
 
 describe("SavingAccount", () => {
   let client;
