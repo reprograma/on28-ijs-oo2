@@ -3,13 +3,7 @@ const { Person } = require('./Person');
 
 class Client extends Person {
 
-	banks;
-
-	constructor(name, cpf) {
-		super(name, cpf);
-		this.banks = [];
-		
-	}
+	banks = [];
 
 	hasAccountInThisBank(bank) {
 		return (
@@ -30,6 +24,11 @@ class Client extends Person {
 			);
 			return;
 		}
+		const sortedBank = this.#getAnyManager(bank);
+		const dataBank = {
+			bank: bank,
+			manager: sortedBank,
+		};
 
 		this.banks.push(bank);
 		const bankIndex = Bank.createdBanks.findIndex(
@@ -37,7 +36,7 @@ class Client extends Person {
 		);
 		Bank.createdBanks[bankIndex].qtdClients++;
 
-		console.log(`Banco ${bank.bankCode} adicionado à cliente ${this.name}. Sua gerente é ${this.#getAnyManager(bank)}.`);
+		console.log(`Banco ${bank.bankCode} adicionado à cliente ${this.name}. Sua gerente é ${sortedBank.name}.`);
 	}
 
 	removeBank(bank) {

@@ -99,9 +99,7 @@ class BankAccount {
 		}
 	}
 
-	// Criar método cashWithdrawal
 	cashWithdrawal(amount) {
-		// Implementar esse método
 		if(this.#balance >= amount){
 			this.#balance -= amount;
 			console.log(`Retirada realizada. O saldo atual da conta é de R$ ${this.#balance}.`);
