@@ -81,6 +81,10 @@ Client {
 */
 
 // Conferindo gerentes
+console.log(`Gerentes do Banco LuaBank`)
+console.log(bank1.managers)
+console.log(`FIM`)
+
 console.log(manager1);
 console.log(manager2);
 console.log(manager3);
@@ -91,6 +95,8 @@ console.log(manager5);
 Exemplo do que será impresso:
 Manager { name: 'Sandra', clients: [ 'Luara', 'Simone' ] }
 */
+console.log(`*** Clientes da Maria ***`)
+console.log(manager1.clients)
 
 // Criação de conta corrente
 const currentAccount1 = new CurrentAccount(client1, bank1, 1111, 2222);

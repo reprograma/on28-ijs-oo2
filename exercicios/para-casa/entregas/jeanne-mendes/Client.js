@@ -1,13 +1,14 @@
 const { Bank } = require('./Bank');
-const { Manager } = require('./Manager');
 const { Person } = require('./Person');
 
 class Client extends Person {
 
-	banks = [];
+	banks;
 
 	constructor(name, cpf) {
 		super(name, cpf);
+		this.banks = [];
+		
 	}
 
 	hasAccountInThisBank(bank) {
@@ -36,7 +37,7 @@ class Client extends Person {
 		);
 		Bank.createdBanks[bankIndex].qtdClients++;
 
-		console.log(`Banco ${bank.bankCode} adicionado à cliente ${this.name}. Sua gerente é .`);
+		console.log(`Banco ${bank.bankCode} adicionado à cliente ${this.name}. Sua gerente é ${this.#getAnyManager(bank)}.`);
 	}
 
 	removeBank(bank) {
@@ -64,12 +65,17 @@ class Client extends Person {
 	}
 
 	#getAnyManager(bank){
-		const randomIndex = Math.floor(Math.random() * bank.managers.length);
-		const randomElement = bank.managers[randomIndex];
-		Manager.addClient(randomElement);
-	}
+		if(bank instanceof Bank){
+			const aleatoryIndice = Math.floor(Math.random() * bank.managers.length)
+			const aleatoryManager = bank.managers[aleatoryIndice];
+			
+			aleatoryManager.addClient(this.name);
+			return aleatoryManager.name;			
+		}
 
+	}
 	
 }
+
 
 module.exports = { Client };

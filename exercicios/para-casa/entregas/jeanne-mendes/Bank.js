@@ -4,8 +4,8 @@ class Bank {
 	bankCode;
 	bankName;
 	#trasferTax;
-	managers;
-
+	managers = [];
+	
 	static createdBanks = [];
 
 	constructor(bankCode, bankName, transferTax) {
@@ -16,7 +16,6 @@ class Bank {
 			bankCode: this.bankCode,
 			qtdClients: 0,
 		});
-		this.managers = [{name: Manager.name}];
 	}
 
 	get transferTax() {

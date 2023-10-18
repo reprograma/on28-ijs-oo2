@@ -2,8 +2,6 @@ class Person{
     name;
     #cpf;
     
-    static clients = [];
-
     constructor(name, cpf){
         this.name = name;
         this.#cpf = cpf;
