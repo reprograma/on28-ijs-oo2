@@ -47,7 +47,10 @@ class Client extends Person{
     Bank.createdBanks[bankIndex].qtdClients++;
 
     console.log(
-      `Banco ${bank.bankCode} adicionado à cliente ${this.name}. Gerente: ${manager.name}`
+      `Banco ${bank.bankCode} adicionado à cliente ${this.name}.`
+    );
+    console.log(
+      `Gerente: ${manager.name}`
     );
 	}
 
@@ -72,7 +75,7 @@ class Client extends Person{
     );
     Bank.createdBanks[bankIndex].qtdClients--;
 
-    console.log(`Banco ${bank.bankCode} removido da cliente ${this.name}`);
+    console.log(`Banco ${bank.bankCode} removido do cliente ${this.name}`);
 	}
 }
 
