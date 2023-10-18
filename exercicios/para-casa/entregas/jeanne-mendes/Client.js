@@ -7,7 +7,7 @@ class Client extends Person {
 
 	hasAccountInThisBank(bank) {
 		return (
-			this.banks.find((element) => element.bankCode === bank.bankCode) !==
+			this.banks.find((element) => element.bank.bankCode === bank.bankCode) !==
 			undefined
 		);
 	}
@@ -30,7 +30,7 @@ class Client extends Person {
 			manager: sortedBank,
 		};
 
-		this.banks.push(bank);
+		this.banks.push(dataBank);
 		const bankIndex = Bank.createdBanks.findIndex(
 			(element) => element.bankCode === bank.bankCode
 		);
@@ -53,7 +53,7 @@ class Client extends Person {
 		}
 
 		this.banks = this.banks.filter(
-			(element) => element.bankCode !== bank.bankCode
+			(element) => element.bank.bankCode !== bank.bankCode
 		);
 		const bankIndex = Bank.createdBanks.findIndex(
 			(element) => element.bankCode === bank.bankCode
@@ -69,7 +69,7 @@ class Client extends Person {
 			const aleatoryManager = bank.managers[aleatoryIndice];
 			
 			aleatoryManager.addClient(this.name);
-			return aleatoryManager.name;			
+			return aleatoryManager;			
 		}
 
 	}

@@ -16,7 +16,7 @@ class BankAccount {
 			return new Error('Informe um banco válido');
 		}
 		if (
-			client.banks.find((element) => element.bankCode === bank.bankCode) ===
+			client.banks.find((element) => element.bank.bankCode === bank.bankCode) ===
 			undefined
 		) {
 			return new Error(
