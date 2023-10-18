@@ -63,7 +63,7 @@ class BankAccount {
 			);
 		}
 
-		if (this.#balance <= amountToBeDebited) {
+		if (this.#balance >= amountToBeDebited) {
 			this.#balance -= amountToBeDebited;
 			anotherAccount.balance += amount;
 
@@ -75,7 +75,7 @@ class BankAccount {
 			console.log(
 				`Saldo insuficiente para realizar a transferência. Seu saldo atual é de ${
 					this.balance
-				}. Para realizar essa transferência você precisa ter ${amountToBeDebited} em conta.`
+				}. Para realizar essa transferência você precisa ter ${this.balance + (amount * this.bank.transferTax)} em conta.`
 			);
 		}
 	}
@@ -110,8 +110,10 @@ class BankAccount {
 			console.log(`Para realizar o saque você precisa ter R$${amount} disponível em sua conta.`)
 			return
 		}
-		{this.#balance -= amount
-		console.log(`Saque no valor de R$${amount} realizado com sucesso, seu saldo atual é R$${this.#balance}.`)}
+		{
+			this.#balance -= amount
+			console.log(`Saque no valor de R$${amount} realizado com sucesso, seu saldo atual é R$${this.#balance}.`)
+		}
 	}
 }
 
