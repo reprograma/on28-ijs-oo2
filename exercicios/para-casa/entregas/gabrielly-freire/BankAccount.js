@@ -16,11 +16,11 @@ class BankAccount {
 			return new Error('Informe um banco válido');
 		}
 		if (
-			client.banks.find((element) => element.bankCode === bank.bankCode) ===
+			client.banks.find((element) => element.bank.bankCode === element.bank.bankCode) ===
 			undefined
 		) {
 			return new Error(
-				`Cliente do CPF ${client.cpf} não possui conta no banco ${bank.bankName}`
+				`Cliente do CPF ${client.cpf} não possui conta no banco ${element.bank.bankCode}`
 			);
 		}
 		this.client = client;
@@ -102,6 +102,11 @@ class BankAccount {
 	// Criar método cashWithdrawal
 	cashWithdrawal(amount) {
 		// Implementar esse método
+		if(this.#balance >= amount){
+			this.debitAmount(amount);
+		}else{
+			console.log(`Você não possui saldo suficiente para efetuar a operação. Seu saldo é R$ ${this.#balance}`);
+		}
 	}
 }
 

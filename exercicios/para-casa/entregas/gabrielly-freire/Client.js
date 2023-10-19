@@ -1,18 +1,9 @@
 const { Bank } = require('./Bank');
+const { Person } = require('./Person');
 
-class Client {
-	name;
-	#cpf;
+class Client extends Person {
+	
 	banks = [];
-
-	constructor(name, cpf) {
-		this.name = name;
-		this.#cpf = cpf;
-	}
-
-	get cpf() {
-		return this.#cpf;
-	}
 
 	hasAccountInThisBank(bank) {
 		return (
@@ -65,6 +56,11 @@ class Client {
 		Bank.createdBanks[bankIndex].qtdClients--;
 
 		console.log(`Banco ${bank.bankCode} removido da cliente ${this.name}`);
+	}
+
+	#getAnyManager(bank){
+		/*Busca e retorna, de maneira aleatória, um gerente do array de gerentes do banco.
+		Chama a função addClient() daquele gerente escolhido, passando o nome do cliente. */
 	}
 }
 
