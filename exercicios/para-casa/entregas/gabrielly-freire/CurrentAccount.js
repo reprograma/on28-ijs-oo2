@@ -1,11 +1,7 @@
 const {BankAccount} = require('./BankAccount.js');
 
 class CurrentAccount extends BankAccount{
-
-    // constructor(client, bank, accountNumber, agencyNumber){
-    //     super(client, bank, accountNumber, agencyNumber);
-    // }
-
+	
     transferTo(anotherAccount, amount){
         if (!(anotherAccount instanceof BankAccount)) {
 			console.log('Informe uma conta válida!');

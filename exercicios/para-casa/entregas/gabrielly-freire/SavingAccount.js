@@ -14,60 +14,46 @@ class SavingAccount extends BankAccount {
   }
 
   cashWithdrawal(amount) {
-    console.log(`Você já realizou ${this.#qtdWithdrawal} retiradas. Você tem direito a ${this.#MAX_OF_WITHDRAWAL} retiradas gratuitas.`)
-
-    if(this.#qtdWithdrawal < this.#MAX_OF_WITHDRAWAL) {
+    console.log(`Você já realizou ${this.#qtdWithdrawal} retiradas. As primeiras 2 retiradas são gratuitas.`);
+    if(this.#MAX_OF_WITHDRAWAL == 0){
+      console.log(`Você não possui mais retiradas gratuitas. Cada retirada terá uma taxa de 0.03`);
+    }else{
+      console.log(`Você ainda possui ${this.#MAX_OF_WITHDRAWAL} retiradas gratuitas.`)
+    }
+    
+    if(this.#qtdWithdrawal <= this.#MAX_OF_WITHDRAWAL) {
       if(this.balance >= amount) {
         this.balance -= amount;
         this.#qtdWithdrawal++;
-        console.log(`Retirada realizada com sucesso. Seu saldo restante é R$ ${this.balance},00`)
+        this.#MAX_OF_WITHDRAWAL--;
+        console.log(`Retirada realizada. O saldo atual da conta é de R$ ${this.balance}`)
       } else {
-        console.log(`Você não tem saldo suficiente para essa operação;`);
+        console.log(`Saldo insuficiente para realizar a transferência. Seu saldo atual é de R$ ${this.balance}.`);
       }
     } else {
       const amountWithTax = amount + (amount * this.#withdrawalTax);
       if(this.balance >= amountWithTax) {
         this.balance -= amountWithTax;
         this.#qtdWithdrawal++;
-        console.log(`Retirada realizada com sucesso. Seu saldo restante é R$ ${this.balance},00`)
+        console.log(`Retirada realizada com sucesso. Seu saldo restante é R$ ${this.balance}`)
       } else {
-        console.log(`Você não tem saldo suficiente para essa operação;`);
+        console.log(`Saldo insuficiente para realizar a transferência. Seu saldo atual é de R$ ${this.balance}.`);
       }
     }
 
-    console.log(`Você já realizou ${this.#qtdWithdrawal} retiradas.`);
+    console.log(`Total de retiradas: ${this.#qtdWithdrawal}`);
   }
 
   generateIncome(currentDay){
     if(currentDay === this.incomeDay){
       let income = this.balance * this.incomeRate;
       this.balance += income;
-      console.log(`A taxa de rendimento é ${income*100}% e seu novo saldo é R$ ${this.balance}`);
+      console.log(`Seu novo saldo após rendimentos é de R$ ${this.balance}`);
     }else{
-      console.log("Hoje não é dia da sua tax de rendimento do dia");
+      console.log("Hoje não é dia da sua taxa de rendimento do dia");
     }
   }
-
-  cashWithdrawal(amount) {
-
-    console.log(`Você fez ${this.#qtdWithdrawal} retiradas e ${this.#MAX_OF_WITHDRAWAL} são gratuitas`);
-		
-		if(this.balance >= amount && this.#MAX_OF_WITHDRAWAL > 0){
-			this.debitAmount(amount);
-      console.log(`Você fez ${this.#qtdWithdrawal} retiradas`);
-      this.#MAX_OF_WITHDRAWAL--;
-      this.#qtdWithdrawal++;
-		}else if(this.balance >= amount && this.#MAX_OF_WITHDRAWAL <= 0){
-      let newAmount = amount + amount * this.#withdrawalTax;
-      console.log(`Foi aplicado a taxa de 3%`);
-      this.debitAmount(newAmount);
-      console.log(`Você fez ${this.#qtdWithdrawal} retiradas`);
-      this.#qtdWithdrawal++;
-    }else{
-			console.log(`Você não possui saldo suficiente para efetuar a operação. Seu saldo é R$ ${this.balance}`);
-		}
-	}
-
+  
 }
 
 module.exports = {SavingAccount}

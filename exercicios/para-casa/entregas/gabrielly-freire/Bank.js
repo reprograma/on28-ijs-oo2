@@ -1,4 +1,4 @@
-const Manager = require("./Manager.js");
+const {Manager} = require("./Manager");
 
 class Bank {
 	bankCode;
@@ -25,9 +25,9 @@ class Bank {
 	contractManager(manager){
 		if(manager instanceof Manager){
 			this.managers.push(manager);
-			console.log(`O Gerente ${manager} foi adicionado com sucesso!`);
+			console.log(`Gerente ${manager.name} contratada no banco ${this.bankName}.`);
 		}else{
-			console.log(`Gerente inválido`);
+			console.log(`Informe um gerente válido.`);
 		}
 	}
 }

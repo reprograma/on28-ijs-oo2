@@ -1,4 +1,4 @@
-const Person = require('./Person.js');
+const { Person } = require('./Person');
 
 class Manager extends Person{
     #salary;
@@ -18,10 +18,9 @@ class Manager extends Person{
     }
 
     addClient(client){
-        //fazer verificacao se é cliente do banco
         this.clients.push(client);
         console.log(`O cliente ${client} foi adicionado com sucesso!`);
     }
 }
 
-module.exports = Manager;
+module.exports = {Manager};
