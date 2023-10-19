@@ -13,14 +13,6 @@ class Manager extends Person {
         this.clients.push(client)
     }
 
-	// get salary() {
-	// 	return this.#salary;
-	// }
-
-    // set salary(newSalary) {
-    //     this.#salary = newSalary;
-    // }
-
 }
 
 module.exports = { Manager };
