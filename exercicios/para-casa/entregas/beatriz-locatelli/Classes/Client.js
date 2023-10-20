@@ -1,5 +1,4 @@
 import { Bank } from "./Bank.js";
-import { Manager } from "./Manager.js";
 import { Person } from "./Person.js";
 
 
@@ -7,8 +6,9 @@ export class Client extends Person {
 	banks = [];
 
 	constructor(name, cpf) {
-		super(name, cpf)
+		super(name, cpf);
 	}
+
 
 
 	hasAccountInThisBank(bank) {
@@ -35,7 +35,7 @@ export class Client extends Person {
 			(element) => element.bankCode === bank.bankCode
 		);
 		Bank.createdBanks[bankIndex].qtdClients++;
-		console.log(`Banco ${bank.bankCode} adicionado à cliente ${this.name}. Sua gerente é ${this.#getAnyManager()}`);
+		console.log(`Banco ${bank.bankCode} adicionado à cliente ${this.name}.`);
 	}
 
 	removeBank(bank) {
@@ -69,4 +69,5 @@ export class Client extends Person {
 		console.log(array[bank])
 	}
 }
+
 

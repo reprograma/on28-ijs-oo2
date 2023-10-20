@@ -19,11 +19,8 @@ export class Manager extends Person {
     }
 
     addClient(client) {
-        if (!(client instanceof Client)) {
-            throw ("Não foi possível adicionar esse cliente.")
-        }
         this.clients.push(client)
-        console.log(`Cliente ${client.name} adicionada à lista de clientes!`)
+        console.log(`Cliente ${client} adicionada à lista de clientes do gerente ${this.name}!`)
     }
 }
 
