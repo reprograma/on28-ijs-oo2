@@ -139,3 +139,30 @@ savingAccount2.cashWithdrawal(500);
 savingAccount2.cashWithdrawal(200);
 savingAccount2.cashWithdrawal(300);
 
+/** Exemplo de saídas:
+  Você já realizou 0 retiradas. As primeiras 2 retiradas são gratuitas.
+  Você ainda possui 2 retiradas gratuitas.
+  Retirada realizada. O saldo atual da conta é de R$ 900.
+  Total de retiradas: 1
+
+  ---
+
+  Você já realizou 1 retiradas. As primeiras 2 retiradas são gratuitas.
+  Você ainda possui 1 retiradas gratuitas.
+  Retirada realizada. O saldo atual da conta é de R$ 400.
+  Total de retiradas: 2
+
+  ---
+
+  Você já realizou 2 retiradas. As primeiras 2 retiradas são gratuitas.
+  Você não possui mais retiradas gratuitas. Cada retirada terá uma taxa de 0.03
+  Retirada realizada. O saldo atual da conta é de R$ 194.
+  Total de retiradas: 3
+
+  ---
+
+  Você já realizou 3 retiradas. As primeiras 2 retiradas são gratuitas.
+  Você não possui mais retiradas gratuitas. Cada retirada terá uma taxa de 0.03
+  Saldo insuficiente para realizar a transferência. Seu saldo atual é de R$ 194,00. Você precisa de R$ 309,00
+  Total de retiradas: 3
+*/
