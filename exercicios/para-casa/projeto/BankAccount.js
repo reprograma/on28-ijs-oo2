@@ -99,10 +99,63 @@ class BankAccount {
 		}
 	}
 
-	// Criar método cashWithdrawal
+	// método cashWithdrawal criado a pedido do exercicio
 	cashWithdrawal(amount) {
-		// Implementar esse método
+		if (amount <= 0) {
+			console.log("Saldo insuficiente, insira um valor"); // condição caso haja saldo suficiente
+			return;
+		}
+
+		if (amount <= this.balance){
+			this.balance -= amount;
+			console.log(`Retirada de $${amount} realizada. Saldo restante: $${this.balance}`) //Caso não haja saldo suficiente
+		} else {
+			console.log("Saldo insuficiente, não foi possível fazer o saque")
+		}
+	}
+
+	getBalance() {
+		return this.#balance
+	}
+
+	transferTo(anotherAccount, amount) { //Sobrescrever o método
+		if (!(anotherAccount instanceof BankAccount)) {
+			console.log('Informe uma conta válida!');
+			return;
+		}
+
+		if (amount <= 0) {
+			console.log('Informe um valor de transferência válido.');
+			return;
+		}
+
+		if (amount <= this.#balance) {
+			this.balance -= amount;
+			anotherAccount.deposito(amount);
+			console.log(`Transferencia de $${amount} realizada com sucesso.`)
+		} else {
+			console.log(`Não foi possível fazer a transferência, saldo insuficiente.`);
+		}
+	}		
+}
+
+class CurrentAccount extends BankAccount {} //herdando a classe BankAccount.
+
+const current = CurrentAccount();
+
+class SavingAccount extends BankAccount { //Deve herdar a classe BankAccount. Deve possuir os seguintes atributos
+	constructor(balance, incomeRate, incomeDay){
+		super(balance);
+
+		this.incomeRate = incomeRate; //incomeRate, taxa de rendimento
+		this.incomeDay = incomeDay; //incomeDay, dia de rendimento
 	}
 }
+const minhaConta = new BankAccount(1000);
+minhaConta.cashWithdrawal(500);
+console.log(minhaConta)
+
+const minhaContaPoupanca = new SavingAccount(1000);
+minhaContaPoupanca.cashWithdrawal(50);
 
 module.exports = { BankAccount };
