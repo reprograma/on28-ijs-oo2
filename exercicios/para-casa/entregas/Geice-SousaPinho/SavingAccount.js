@@ -85,7 +85,7 @@ class SavingAccount extends BankAccount {
 
   generateIncome(currentDay) {
     if (currentDay === this.incomeDay) {
-      this.balance += this.balance * 0.4;
+      this.balance += this.balance * this.incomeRate;
       console.log(
         `Seu novo saldo é ${this.balance}. O valor do rendimento foi de R$ ${
           this.balance * this.incomeRate

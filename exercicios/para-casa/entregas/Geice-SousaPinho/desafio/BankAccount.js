@@ -1,5 +1,5 @@
-const { Bank } = require('./Bank');
-const { Client } = require('./Client');
+const { Bank } = require('./Bank.js');
+const { Client } = require('./Client.js');
 
 class BankAccount {
 	client;
@@ -15,10 +15,7 @@ class BankAccount {
 		if (!(bank instanceof Bank)) {
 			return new Error('Informe um banco válido');
 		}
-		if (
-			client.banks.find((element) => element.bankCode === bank.bankCode) ===
-			undefined
-		) {
+		if (client.banks.find((element) => element.bank.bankCode === bank.bankCode) ===	undefined) {
 			return new Error(
 				`Cliente do CPF ${client.cpf} não possui conta no banco ${bank.bankName}`
 			);
@@ -117,19 +114,19 @@ class BankAccount {
 	}
 }
 
-// const banco = new Bank(2563, 'geiceBB', 0.5)
-// const banco2 = new Bank(2773, 'BB', 0.5)
-// console.log(banco)
+const banco = new Bank(2563, 'geiceBB', 0.5)
+const banco2 = new Bank(2773, 'BB', 0.5)
+console.log(banco)
 
-// const cliente = new Client('geice', 236541789)
-// const client2 = new Client('margarida', 17897757)
-// cliente.addBank(banco2)
-// client2.addBank(banco2)
-// client2.addBank(banco)
+const cliente = new Client('geice', 236541789)
+const client2 = new Client('margarida', 17897757)
+cliente.addBank(banco2)
+client2.addBank(banco2)
+client2.addBank(banco)
 
-// const conta = new BankAccount(cliente, banco2, 2365, 69874512)
-// const conta2 = new BankAccount(client2, banco, 2365, 69874512)
-// console.log(conta)
+const conta = new BankAccount(cliente, banco2, 2365, 69874512)
+const conta2 = new BankAccount(client2, banco, 2365, 69874512)
+console.log(conta)
 
 // console.log()
 // conta.balance = 600

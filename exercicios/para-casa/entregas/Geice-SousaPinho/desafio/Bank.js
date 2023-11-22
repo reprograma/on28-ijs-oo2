@@ -1,5 +1,4 @@
-const { Manager } = require('./desafio/Manager');
-
+const { Manager } = require('./Manager.js')
 
 class Bank {
 	bankCode;
@@ -27,10 +26,11 @@ class Bank {
 		if (manager instanceof Manager){
 			this.managers.push(manager)
 		}
+		return
 	}
 }
 
-const banco = new Bank(5625, 'geiceBB', 5.00)
-console.log(banco)
+// const banco = new Bank(5625, 'geiceBB', 5.00)
+// console.log(banco)
 
 module.exports = { Bank };
