@@ -1,5 +1,5 @@
-const { Bank } = require('./Bank');
-const { Client } = require('./Client');
+const { Bank } = require("./Bank");
+const { Client } = require("./Client");
 
 class BankAccount {
 	client;
@@ -101,8 +101,12 @@ class BankAccount {
 
 	// Criar método cashWithdrawal
 	cashWithdrawal(amount) {
-		// Implementar esse método
-	}
+		if (this.#balance < amount) {
+		    console.log("Erro: Saldo insuficiente para essa operação.");
+		} else {
+		    this.debitAmount(amount);
+		}
+    }
 }
 
 module.exports = { BankAccount };

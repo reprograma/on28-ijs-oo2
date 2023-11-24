@@ -2,6 +2,7 @@ class Bank {
 	bankCode;
 	bankName;
 	#trasferTax;
+	managers = []
 
 	static createdBanks = [];
 
