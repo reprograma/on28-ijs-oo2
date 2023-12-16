@@ -85,8 +85,6 @@ Teste tudo o que foi criado.
 
 ---
 
-**Presentinho da prô pra terça:**
-**NÃO PRECISA FAZER ANTES!**
 A classe `SavingAccount` possuir os seguintes atributos a mais:
 - [ ] `qtdWithdrawal`: Quantidade de retiradas de dinheiro em bancos 24 horas
   - Deve ser inicializado com 0.
